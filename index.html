@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base vue practice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<main id="app">
+    <div class="container">
+        <div>
+            <h1>{{ title }}</h1>
+            <div>
+                <input type="text"
+                       v-bind:placeholder="placeholderString"
+                       v-bind:value="inputValue"
+                       v-on:input="inputChangedHandler"
+                       v-on:keyup.enter="addNewNote"/>
+            </div>
+            <div class="btn-container">
+                <button class="btn" v-on:click="addNewNote">Add</button>
+                <h2>Value: {{ inputValue }}</h2>
+            </div>
+        </div>
+        <ul class="list">
+            <!--myNote - нейминг любой, in notes - что итерируем, вне list-item уже не обращаемся к myNote-->
+            <li class="list-item" v-for="(myNote, ind) in notes">
+                {{ myNote }}
+                <button class="list-button danger" v-on:click="deleteNote(ind)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</main>
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
