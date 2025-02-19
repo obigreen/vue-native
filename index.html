@@ -11,26 +11,33 @@
 <main id="app">
     <div class="container">
         <div>
-            <h1>{{ title }}</h1>
+            <h1 :style="{
+                color: inputValue.length > 8 ? 'red' : 'green'
+                }">{{ title }}</h1>
             <div>
                 <input type="text"
-                       v-bind:placeholder="placeholderString"
-                       v-bind:value="inputValue"
-                       v-on:input="inputChangedHandler"
-                       v-on:keyup.enter="addNewNote"/>
+                       :placeholder="placeholderString"
+                       @keyup.enter="addNewNote"
+                       v-model="inputValue"/>
+                <!--@input="inputChangedHandler" c model можно удалить-->
+                <!--:value="inputValue"/>-->
             </div>
             <div class="btn-container">
-                <button class="btn" v-on:click="addNewNote">Add</button>
+                <button class="btn" @click="addNewNote">Add</button>
                 <h2>Value: {{ inputValue }}</h2>
             </div>
         </div>
-        <ul class="list">
+        <div>
+            Общее количество: {{ notes.length }} | x2: {{doubleCountComputed}}
+        </div>
+        <ul class="list" v-if="notes.length !== 0">
             <!--myNote - нейминг любой, in notes - что итерируем, вне list-item уже не обращаемся к myNote-->
             <li class="list-item" v-for="(myNote, ind) in notes">
-                {{ myNote }}
-                <button class="list-button danger" v-on:click="deleteNote(ind)">Delete</button>
+                <span :class="['primary', {'bold' : myNote.length > 5}]">{{ toUpperCase(myNote) }}</span>
+                <button class="list-button danger" @click="deleteNote(ind)">Delete</button>
             </li>
         </ul>
+        <div v-else>Нет записей</div>
     </div>
 </main>
 

@@ -6,6 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
+    background-color: #222;
 }
 
 ul {
@@ -15,9 +16,6 @@ ul {
 main {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #222;
 }
 
 .container {
@@ -72,4 +70,8 @@ h1 {
     background-color: #222;
     color: #fff;
     cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
 }
